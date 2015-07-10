@@ -19,7 +19,7 @@ angular.module('fhirDemoApp')
       'MedicationDispense': patient.MedicationDispense.where,
       'Procedure': patient.Procedure.where,
       'Immunization': patient.Immunization.where,
-      'FamilyHistory': patient.FamilyHistory.where,
+      'FamilyMemberHistory': patient.FamilyMemberHistory.where,
       'AllergyIntolerance': patient.AllergyIntolerance.where,
       'DocumentReference': patient.DocumentReference.where,
       'ImagingStudy': patient.ImagingStudy.where,
