@@ -15,7 +15,7 @@ angular.module('fhirDemoApp')
       'Patient': patient.Patient.where,
       'Condition': patient.Condition.where,
       'Observation': patient.Observation.where,
-      'MedicationPrescription': patient.MedicationPrescription.where,
+      'MedicationPrescription': patient.MedicationOrder.where,
       'MedicationDispense': patient.MedicationDispense.where,
       'Procedure': patient.Procedure.where,
       'Immunization': patient.Immunization.where,
