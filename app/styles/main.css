@@ -54,7 +54,7 @@ cursor: pointer;
 }
 
 h3 code {vertical-align: middle;}
-h3.model {margin-bottom: 5px;}
+h3.model {margin-bottom: 5px; margin-top: 70px;}
 h3.url {margin-top: 5px;}
 
 /* Main marketing message and sign up button */

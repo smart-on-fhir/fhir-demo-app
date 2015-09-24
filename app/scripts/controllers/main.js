@@ -10,20 +10,26 @@ angular.module('fhirDemoApp')
 .controller('MainCtrl', function ($scope, $routeParams) {
   var initialHash = $routeParams.initialHash;
   FHIR.oauth2.ready($routeParams, function(smart){
-    var patient = smart.context.patient;
+    var patient = smart.patient;
+    var api = patient.api;
+    
+    function generateCall(resourceType) {
+        return function(){return api.search({type:resourceType})};
+    }
+    
     var calls = {
-      'Patient': patient.Patient.where,
-      'Condition': patient.Condition.where,
-      'Observation': patient.Observation.where,
-      'MedicationPrescription': patient.MedicationOrder.where,
-      'MedicationDispense': patient.MedicationDispense.where,
-      'Procedure': patient.Procedure.where,
-      'Immunization': patient.Immunization.where,
-      'FamilyMemberHistory': patient.FamilyMemberHistory.where,
-      'AllergyIntolerance': patient.AllergyIntolerance.where,
-      'DocumentReference': patient.DocumentReference.where,
-      'ImagingStudy': patient.ImagingStudy.where,
-      'CarePlan': patient.CarePlan.where
+      'Patient': function(){return patient.read()},
+      'Condition': generateCall("Condition"),
+      'Observation': generateCall("Observation"),
+      'MedicationOrder': generateCall("MedicationOrder"),
+      'MedicationDispense': generateCall("MedicationDispense"),
+      'Procedure': generateCall("Procedure"),
+      'Immunization': generateCall("Immunization"),
+      'FamilyMemberHistory': generateCall("FamilyMemberHistory"),
+      'AllergyIntolerance': generateCall("AllergyIntolerance"),
+      'DocumentReference': generateCall("DocumentReference"),
+      'ImagingStudy': generateCall("ImagingStudy"),
+      'CarePlan': generateCall("CarePlan")
     };
 
     $scope.resourceUrl = function(){
@@ -34,15 +40,9 @@ angular.module('fhirDemoApp')
       var call = calls[resource];
       $scope[resource] = function(){
         $scope.resource = resource;
-        $scope.url = call.queryUrl();
         $scope.fetchedData = null;
-        jQuery.ajax(smart.authenticated({
-          type: 'GET',
-          url: smart.urlFor(call),
-          dataType: 'json',
-          data: call.queryParams(),
-          traditional: true
-        })).done(function(data){
+        call().done(function(r){
+          var data = r.data || r;
           $scope.fetchedData = JSON.stringify(data, null, 2);
           $scope.$apply();
         });
