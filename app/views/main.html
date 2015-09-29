@@ -4,19 +4,16 @@
     <li ng-class="{'active':resource=='Patient'}"><a ng-click="Patient()">Patient</a></li>
     <li ng-class="{'active':resource=='Condition'}"><a ng-click="Condition()">Conditions</a></li>
     <li ng-class="{'active':resource=='Observation'}"><a ng-click="Observation()">Observations</a></li>
-    <li ng-class="{'active':resource=='MedicationPrescription'}"><a ng-click="MedicationPrescription()">Prescriptions</a></li>
+    <li ng-class="{'active':resource=='MedicationOrder'}"><a ng-click="MedicationOrder()">Prescriptions</a></li>
     <li ng-class="{'active':resource=='MedicationDispense'}"><a ng-click="MedicationDispense()">Dispenses</a></li>
     <li ng-class="{'active':resource=='Procedure'}"><a ng-click="Procedure()">Procedures</a></li>
     <li ng-class="{'active':resource=='Immunization'}"><a ng-click="Immunization()">Immunizations</a></li>
-    <li ng-class="{'active':resource=='FamilyHistory'}"><a ng-click="FamilyHistory()">Family History</a></li>
+    <li ng-class="{'active':resource=='FamilyMemberHistory'}"><a ng-click="FamilyMemberHistory()">Family Member History</a></li>
     <li ng-class="{'active':resource=='AllergyIntolerance'}"><a ng-click="AllergyIntolerance()">Allergies</a></li>
     <li ng-class="{'active':resource=='DocumentReference'}"><a ng-click="DocumentReference()">Documents</a></li>
     <li ng-class="{'active':resource=='ImagingStudy'}"><a ng-click="ImagingStudy()">Imaging Studies</a></li>
-    <li ng-class="{'active':resource=='CarePlan'}"><a ng-click="CarePlan()">Care Plan</a></li>
+    <li ng-class="{'active':resource=='CarePlan'}"><a ng-click="CarePlan()">Care Plans</a></li>
   </ul>
-  <h3 class="text-muted">
-    <strong>SMART on FHIR</strong>
-  </h3>
 </div>
 </nav>
 
@@ -26,11 +23,6 @@
       FHIR {{resource}} Resource
     </a>
   </strong>
-</h3>
-
-<h3 class="url">
-  API Call:
-  <strong><code>{{url}}</code></strong>
 </h3>
 
 <pre id="fetched">
